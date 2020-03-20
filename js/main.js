@@ -13,9 +13,13 @@ function getSerie() {
     .then(data => {
       series = data;
     });
-  paintCard();
-}
+  for (const serie of series) {
+    serie.value = series;
+  }
 
+  /*   paintCard(); */
+}
+console.log(series);
 bnt.addEventListener('click', getSerie);
 
 function paintCard() {
@@ -28,4 +32,4 @@ function paintCard() {
   list.innerHTML = listCode;
 }
 getSerie();
-paintCard();
+/* paintCard(); */
