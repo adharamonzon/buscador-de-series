@@ -7,19 +7,21 @@
     <title>Evaluación final Adhara Monzón</title>
   </head>
   <body>
-    <section class="search">
-      <h1 class="title">Buscador de series</h1>
+    <section class="section-search">
+      <h1 class="search-title">Buscador de series</h1>
       <form>
-        <input class="js-input input" type="text" placeholder="¿Qué serie quieres buscar?" />
-        <button class="js-btn btn" type="button">Search</button>
+        <input class="js-input search-input" type="text" placeholder="¿Qué serie quieres buscar?" value="friends" />
+        <button class="js-btn search-btn" type="button">Search</button>
       </form>
     </section>
     <main class="main">
       <section class="list-container">
+        <h2 class="title-section-list">Series buscadas:</h2>
         <ul class="js-list list"></ul>
       </section>
       <aside class="favorites">
-        <h2>Series favoritas</h2>
+        <h2 class="title-section-list">Series favoritas</h2>
+        <ul class="js-favorite-list"></ul>
       </aside>
     </main>
     <script type="text/javascript" src="./js/main.js"></script>
