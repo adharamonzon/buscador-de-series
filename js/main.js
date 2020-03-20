@@ -13,15 +13,19 @@ function getSerie(ev) {
   fetch(`http://api.tvmaze.com/search/shows?q=${newInput}`)
     .then(response => response.json())
     .then(data => {
+      series = []; //sería igual hacer un series.splice (0); o (0,10000) al querer borrar todo vale con poner un 0.
       for (let i = 0; i < data.length; i++) {
-        series.push({ id: data[i].show.id, name: data[i].show.name, image: data[i].show.image.medium });
-        if (series.image === null) {
-          serie.image('https://via.placeholder.com/210x295/ffffff/666666/? text=TV');
+        series.push({ id: data[i].show.id, name: data[i].show.name, image: data[i].show.image });
+        if (series[i].image === null) {
+          series[i].image = 'https://via.placeholder.com/210x295/ffffff/666666/? text=TV';
+        } else {
+          series[i].image = data[i].show.image.medium;
         }
       }
+      favorites.push(series[0]);
+      paintCard();
+      paintFavCard();
     });
-  favorites.push(series[0]);
-  paintCard();
 }
 
 bnt.addEventListener('click', getSerie);
@@ -35,5 +39,14 @@ function paintCard() {
     listCode += `</li>`;
     list.innerHTML = listCode;
   }
-  favoritesList.innerHTML = listCode;
+}
+function paintFavCard() {
+  let listCode = '';
+  for (const serie of favorites) {
+    listCode += `<li class="list-item" id="${serie.id}">`;
+    listCode += `<h3 class="serie-title">${serie.name} </h3>`;
+    listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name})</div>">`;
+    listCode += `</li>`;
+    favoritesList.innerHTML = listCode;
+  }
 }
