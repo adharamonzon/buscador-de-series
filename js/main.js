@@ -5,8 +5,9 @@ const list = document.querySelector('.js-list');
 let favoritesList = document.querySelector('.js-favorite-list');
 
 let series = [];
-let favorites = [];
+let favorites = []; //quiero guardar este array en el local storage
 
+//función para coger las series que estoy buscando del servidor
 function getSerie(ev) {
   ev.preventDefalut;
   const newInput = document.querySelector('.js-input').value;
@@ -25,11 +26,12 @@ function getSerie(ev) {
       favorites.push(series[0]);
       paintCard();
       paintFavCard();
+      setInLocalSotrage();
     });
 }
 
 bnt.addEventListener('click', getSerie);
-
+//pintar la lista de series buscadas
 function paintCard() {
   let listCode = '';
   for (const serie of series) {
@@ -40,6 +42,7 @@ function paintCard() {
     list.innerHTML = listCode;
   }
 }
+//pintar las películas favoritas
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
@@ -50,3 +53,19 @@ function paintFavCard() {
     favoritesList.innerHTML = listCode;
   }
 }
+//local storage
+
+const getFromLocalStorage = () => {
+  const localStorageFavorite = localStorage.getItem('favoutiresSeries');
+  if (localStorageFavorite !== null) {
+    favorites = JSON.parse(localStorageFavorite);
+    paintFavCard();
+  }
+};
+
+const setInLocalSotrage = () => {
+  const stringifyFavorites = JSON.stringify(favorites);
+  localStorage.setItem('favoutiresSeries', stringifyFavorites);
+};
+
+getFromLocalStorage();
