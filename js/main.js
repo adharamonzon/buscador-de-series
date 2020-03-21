@@ -33,7 +33,7 @@ bnt.addEventListener('click', getSerie);
 
 //seleccionar favoritos
 const listenFavoriteSerie = () => {
-  const clickSerie = document.querySelectorAll('.invisible-input');
+  const clickSerie = document.querySelectorAll('.js-invisible-input');
   for (const selected of clickSerie) {
     selected.addEventListener('click', addSerie);
   }
@@ -41,15 +41,17 @@ const listenFavoriteSerie = () => {
 const addSerie = ev => {
   console.log('clicado', ev.target);
 };
+/* listenFavoriteSerie(); */
+
 //pintar la lista de series buscadas
 function paintCard() {
   let listCode = '';
   for (const serie of series) {
     listCode += `<li class="list-item" id="${serie.id}">`;
-    listCode += `<div class="invisible-container>`;
-    listCode += `<input class="invisible-input" type="button" accept="image/png, image/jpg"`;
+    listCode += `<div class="invisible-container">`;
+    listCode += `<input class="js-invisible-input invisible-input" type="button">`;
     listCode += `<h3 class="serie-title">${serie.name} </h3>`;
-    listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name})</div>">`;
+    listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
     listCode += `</div>`;
     list.innerHTML = listCode;
@@ -60,10 +62,10 @@ function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
     listCode += `<li class="list-item" id="${serie.id}">`;
-    listCode += `<div class="invisible-container>`;
-    listCode += `<input class="invisible-input" type="button" accept="image/png, image/jpg"`;
+    listCode += `<div class="invisible-container">`;
+    listCode += `<input class="js-invisible-input invisible-input" type="button">`;
     listCode += `<h3 class="serie-title">${serie.name} </h3>`;
-    listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name})</div>">`;
+    listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
     listCode += `</div>`;
     favoritesList.innerHTML = listCode;
