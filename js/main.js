@@ -23,9 +23,9 @@ function getSerie(ev) {
           series[i].image = data[i].show.image.medium;
         }
       }
-      favorites.push(series[0]);
       paintCard();
-      paintFavCard();
+      listenFavoriteSerie();
+
       setInLocalSotrage();
     });
 }
@@ -39,21 +39,26 @@ const listenFavoriteSerie = () => {
   }
 };
 const addSerie = ev => {
-  console.log('clicado', ev.target);
+  debugger;
+  const clickedSerieId = parseInt(ev.currentTarget.id);
+  let favSerie;
+  for (const serie of series) {
+    if (serie.id === clickedSerieId) {
+      favSerie = serie.id;
+      favorites.push(favSerie);
+    }
+    paintFavCard();
+  }
 };
-/* listenFavoriteSerie(); */
 
 //pintar la lista de series buscadas
 function paintCard() {
   let listCode = '';
   for (const serie of series) {
-    listCode += `<li class="list-item" id="${serie.id}">`;
-    listCode += `<div class="invisible-container">`;
-    listCode += `<input class="js-invisible-input invisible-input" type="button">`;
+    listCode += `<li class="js-invisible-input list-item" id="${serie.id}">`;
     listCode += `<h3 class="serie-title">${serie.name} </h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
-    listCode += `</div>`;
     list.innerHTML = listCode;
   }
 }
@@ -61,13 +66,10 @@ function paintCard() {
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
-    listCode += `<li class="list-item" id="${serie.id}">`;
-    listCode += `<div class="invisible-container">`;
-    listCode += `<input class="js-invisible-input invisible-input" type="button">`;
+    listCode += `<li class="js-invisible-input list-item" id="${serie.id}">`;
     listCode += `<h3 class="serie-title">${serie.name} </h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
-    listCode += `</div>`;
     favoritesList.innerHTML = listCode;
   }
 }
