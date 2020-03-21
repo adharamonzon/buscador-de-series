@@ -29,16 +29,29 @@ function getSerie(ev) {
       setInLocalSotrage();
     });
 }
-
 bnt.addEventListener('click', getSerie);
+
+//seleccionar favoritos
+const listenFavoriteSerie = () => {
+  const clickSerie = document.querySelectorAll('.invisible-input');
+  for (const selected of clickSerie) {
+    selected.addEventListener('click', addSerie);
+  }
+};
+const addSerie = ev => {
+  console.log('clicado', ev.target);
+};
 //pintar la lista de series buscadas
 function paintCard() {
   let listCode = '';
   for (const serie of series) {
     listCode += `<li class="list-item" id="${serie.id}">`;
+    listCode += `<div class="invisible-container>`;
+    listCode += `<input class="invisible-input" type="button" accept="image/png, image/jpg"`;
     listCode += `<h3 class="serie-title">${serie.name} </h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name})</div>">`;
     listCode += `</li>`;
+    listCode += `</div>`;
     list.innerHTML = listCode;
   }
 }
@@ -47,9 +60,12 @@ function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
     listCode += `<li class="list-item" id="${serie.id}">`;
+    listCode += `<div class="invisible-container>`;
+    listCode += `<input class="invisible-input" type="button" accept="image/png, image/jpg"`;
     listCode += `<h3 class="serie-title">${serie.name} </h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name})</div>">`;
     listCode += `</li>`;
+    listCode += `</div>`;
     favoritesList.innerHTML = listCode;
   }
 }

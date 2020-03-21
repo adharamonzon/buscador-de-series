@@ -59,3 +59,7 @@
   border-radius: 6px;
   padding-top: 10px;
 }
+.invisible-input {
+  width: 260px;
+  height: 326px;
+}
