@@ -24,38 +24,59 @@ function getSerie(ev) {
         }
       }
       paintCard();
-      listenFavoriteSerie();
+      listenAddFavoriteSerie();
     });
 }
 
 bnt.addEventListener('click', getSerie);
 
 //seleccionar favoritos
-const listenFavoriteSerie = () => {
-  const clickSerie = document.querySelectorAll('.js-invisible');
+
+const listenAddFavoriteSerie = () => {
+  const clickSerie = document.querySelectorAll('.js-li-invisible');
   for (const selected of clickSerie) {
-    selected.addEventListener('click', addSerie);
+    selected.addEventListener('click', handleClick);
   }
 };
-const addSerie = ev => {
+const handleClick = ev => {
+  /*   debugger; */
   const clickedSerieId = parseInt(ev.currentTarget.id);
-  let favSerie;
-  for (const serie of series) {
-    if (serie.id === clickedSerieId) {
-      favSerie = serie;
-      favorites.push(favSerie);
-    }
+  const indexFavorites = favorites.findIndex(favorites => favorites.id === clickedSerieId);
+  const indexSeries = series.findIndex(series => series.id === clickedSerieId);
+  if (indexFavorites === -1) {
+    favorites.push({ id: series[indexSeries].id, name: series[indexSeries].name, image: series[indexSeries].image });
+  } else {
+    favorites.splice(indexFavorites, 1);
   }
   paintFavCard();
   setInLocalSotrage();
+  /*   changeColor(); */
 };
+/* function changeColor() {
+  const changeColor = document.querySelectorAll('.js-image-container');
+  changeColor.style.backgroundColor = 'red';
+  const changeColorTitle = document.querySelectorAll('.js-serie-title');
+  changeColorTitle.style.color = 'blue';
+} */
+//for of para escuchar el click!
+/* let favSerie;
+  debugger;
+  for (const serie of series) {
+      if (serie.id === clickedSerieId) {
+        favSerie = serie;
+      }
+    }
+  (cierre del handleClick)}
+  favorites.push(favSerie);
+ */
+
 //pintar la lista de series buscadas
 function paintCard() {
   let listCode = '';
   for (const serie of series) {
-    listCode += `<li class="js-invisible list-item" id="${serie.id}">`;
-    listCode += `<h3 class="serie-title">${serie.name} </h3>`;
-    listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
+    listCode += `<li class="js-li-invisible list-item" id="${serie.id}">`;
+    listCode += `<h3 class="js-serie-title serie-title">${serie.name} </h3>`;
+    listCode += `<div class="js-image-container image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
     list.innerHTML = listCode;
   }
@@ -64,7 +85,7 @@ function paintCard() {
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
-    listCode += `<li class="js-invisible list-item" id="${serie.id}">`;
+    listCode += `<li class="js-li-invisible list-item" id="${serie.id}">`;
     listCode += `<h3 class="serie-title">${serie.name} </h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;

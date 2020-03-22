@@ -48,6 +48,9 @@
 .serie-title {
   margin-bottom: 5px;
 }
+.image-container {
+  padding-bottom: 20px;
+}
 .favorites {
   background-color: rgb(160, 224, 253);
   margin-right: 30px;
