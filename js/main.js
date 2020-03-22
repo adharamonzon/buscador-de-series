@@ -52,14 +52,15 @@ const handleClick = ev => {
     favorites.push({ id: series[indexSeries].id, name: series[indexSeries].name, image: series[indexSeries].image });
   } else {
     favorites.splice(indexFavorites, 1);
+    favoritesList.innerHTML = '';
   }
   paintFavCard();
   setInLocalSotrage();
-  changeColor();
+  /* hangeColor(); */
 };
 
 /*   changeColor(); */
-function changeColor(ev) {
+/* function changeColor(ev) {
   debugger;
   const clickedSerieId = parseInt(ev.currentTarget.id);
   const changeColorTitle = document.querySelectorAll('.js-serie-title');
@@ -71,7 +72,7 @@ function changeColor(ev) {
     }
   }
 }
-
+ */
 //for of para escuchar el click!
 /* const handleClick = ev => {
   const clickedSerieId = parseInt(ev.currentTarget.id);
