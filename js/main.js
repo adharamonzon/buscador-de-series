@@ -41,12 +41,12 @@ const listenAddFavoriteSerie = () => {
 
 const handleClick = ev => {
   const clickedSerieId = parseInt(ev.currentTarget.id);
-  const changeColorTitle = document.querySelectorAll('.js-serie-title');
-  const changeColor = document.querySelectorAll('.js-image-container');
+  let changeColorTitle = document.querySelectorAll('.js-serie-title');
+  let changeColor = document.querySelector('.js-image-container');
   debugger;
-  for (const serie of series) {
+  for (let serie of series) {
     if (serie.id === clickedSerieId) {
-      changeColor.serie.style.backgroundColor = 'red';
+      changeColor.style.backgroundColor = 'red';
       changeColorTitle.style.color = 'blue';
     }
   }
