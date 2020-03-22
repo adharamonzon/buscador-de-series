@@ -7,7 +7,6 @@
 body {
   background-image: url(./images/648300-PORQ48-148.jpg);
   background-repeat: repeat-y;
-  background-clip: border-box;
 }
 .section-search {
   margin-top: 20px;
