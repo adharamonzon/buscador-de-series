@@ -65,7 +65,7 @@ function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
     listCode += `<li class="js-invisible list-item" id="${serie.id}">`;
-    listCode += `<h3 class="serie-title">${serie.name} </h3>`;
+    listCode += `<h3 class="serie-title">${serie.name} <a class="icon" href="#"><img class="cross-icon" src="../css/images/times-solid.svg"></a></h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
     favoritesList.innerHTML = listCode;
