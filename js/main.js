@@ -39,13 +39,17 @@ const listenAddFavoriteSerie = () => {
   }
 };
 
-/* function handleClick() {
-  listenFavorites();
-  changeColor(ev); 
-}*/
 const handleClick = ev => {
-  /*   debugger; */
   const clickedSerieId = parseInt(ev.currentTarget.id);
+  const changeColorTitle = document.querySelectorAll('.js-serie-title');
+  const changeColor = document.querySelectorAll('.js-image-container');
+  debugger;
+  for (const serie of series) {
+    if (serie.id === clickedSerieId) {
+      changeColor.serie.style.backgroundColor = 'red';
+      changeColorTitle.style.color = 'blue';
+    }
+  }
   const indexFavorites = favorites.findIndex(favorites => favorites.id === clickedSerieId);
   const indexSeries = series.findIndex(series => series.id === clickedSerieId);
   if (indexFavorites === -1) {
@@ -56,9 +60,17 @@ const handleClick = ev => {
   }
   paintFavCard();
   setInLocalSotrage();
-  /* hangeColor(); */
+  /* changeColor(); */
 };
 
+/* function changeColor(ev) {
+  const clickedId = parseInt(ev.currentTarget.id);
+  for (const serie of series) {
+    if (serie.id === clickedId) {
+      serie.classList.add('serie-selected');
+    }
+  }
+} */
 /*   changeColor(); */
 /* function changeColor(ev) {
   debugger;
@@ -72,19 +84,7 @@ const handleClick = ev => {
     }
   }
 }
- */
-//for of para escuchar el click!
-/* const handleClick = ev => {
-  const clickedSerieId = parseInt(ev.currentTarget.id);
-  let favSerie;
-  debugger;
-  for (const serie of series) {
-      if (serie.id === clickedSerieId) {
-        favSerie = serie;
-      }
-    }
-  (cierre del handleClick)}
-  favorites.push(favSerie); */
+*/
 
 //pintar la lista de series buscadas
 function paintCard() {
@@ -101,8 +101,8 @@ function paintCard() {
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
-    listCode += `<li class="js-li-invisible list-item" id="${serie.id}">`;
-    listCode += `<h3 class="serie-title">${serie.name} </h3>`;
+    listCode += `<li class="js-invisible list-item" id="${serie.id}">`;
+    listCode += `<h3 class="serie-title">${serie.name} <a class="icon" href="#"><img class="cross-icon" src="../css/images/times-solid.svg"></a></h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
     favoritesList.innerHTML = listCode;

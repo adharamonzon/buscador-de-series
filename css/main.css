@@ -2,7 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Lucida Sans', Verdana, sans-serif;
+  font-family: 'Gotu', sans-serif;
+}
+body {
+  background-image: url(./images/648300-PORQ48-148.jpg);
+  background-repeat: repeat-y;
 }
 .section-search {
   margin-top: 20px;
@@ -18,12 +22,15 @@
   width: 250px;
   border-radius: 6px;
   height: 40px;
+  font-size: 18px;
 }
 .search-btn {
-  width: 80px;
+  width: 90px;
   border-radius: 6px;
   height: 40px;
-  background-color: rgb(153, 218, 248);
+  background-color: rgb(133, 203, 235);
+  cursor: pointer;
+  font-size: 18px;
 }
 .main {
   margin-top: 10px;
@@ -41,28 +48,40 @@
 }
 .list-item {
   list-style: none;
+  cursor: pointer;
 }
 .title-section-list {
   margin-bottom: 20px;
+  font-weight: bolder;
 }
 .serie-title {
   margin-bottom: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+.cross-icon {
+  width: 20px;
+  height: 20px;
 }
 .image-container {
   padding-bottom: 20px;
 }
 .favorites {
-  background-color: rgb(160, 224, 253);
+  background-color: rgb(206, 238, 253, 0.55);
   margin-right: 30px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 35%;
   border-radius: 6px;
   padding-top: 10px;
 }
-.invisible-input {
-  width: 260px;
-  height: 326px;
+.list-item {
+  margin-bottom: 20px;
+}
+.serie-selected {
+  background-color: chartreuse;
+  color: blue;
 }
