@@ -5,7 +5,7 @@ const list = document.querySelector('.js-list');
 let favoritesList = document.querySelector('.js-favorite-list');
 
 let series = [];
-let favorites = []; //quiero guardar este array en el local storage
+let favorites = []; //array local storage
 
 //función para coger las series que estoy buscando del servidor
 function getSerie(ev) {
@@ -25,37 +25,35 @@ function getSerie(ev) {
       }
       paintCard();
       listenFavoriteSerie();
-
-      setInLocalSotrage();
     });
 }
+
 bnt.addEventListener('click', getSerie);
 
 //seleccionar favoritos
 const listenFavoriteSerie = () => {
-  const clickSerie = document.querySelectorAll('.js-invisible-input');
+  const clickSerie = document.querySelectorAll('.js-invisible');
   for (const selected of clickSerie) {
     selected.addEventListener('click', addSerie);
   }
 };
 const addSerie = ev => {
-  debugger;
   const clickedSerieId = parseInt(ev.currentTarget.id);
   let favSerie;
   for (const serie of series) {
     if (serie.id === clickedSerieId) {
-      favSerie = serie.id;
+      favSerie = serie;
       favorites.push(favSerie);
     }
-    paintFavCard();
   }
+  paintFavCard();
+  setInLocalSotrage();
 };
-
 //pintar la lista de series buscadas
 function paintCard() {
   let listCode = '';
   for (const serie of series) {
-    listCode += `<li class="js-invisible-input list-item" id="${serie.id}">`;
+    listCode += `<li class="js-invisible list-item" id="${serie.id}">`;
     listCode += `<h3 class="serie-title">${serie.name} </h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
@@ -66,7 +64,7 @@ function paintCard() {
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
-    listCode += `<li class="js-invisible-input list-item" id="${serie.id}">`;
+    listCode += `<li class="js-invisible list-item" id="${serie.id}">`;
     listCode += `<h3 class="serie-title">${serie.name} </h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
