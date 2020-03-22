@@ -14,7 +14,7 @@ function getSerie(ev) {
   fetch(`http://api.tvmaze.com/search/shows?q=${newInput}`)
     .then(response => response.json())
     .then(data => {
-      series = []; //sería igual hacer un series.splice (0); o (0,10000) al querer borrar todo vale con poner un 0.
+      series = [];
       for (let i = 0; i < data.length; i++) {
         series.push({ id: data[i].show.id, name: data[i].show.name, image: data[i].show.image });
         if (series[i].image === null) {
@@ -24,7 +24,6 @@ function getSerie(ev) {
         }
       }
       paintCard();
-      listenAddFavoriteSerie();
     });
 }
 
@@ -33,7 +32,7 @@ bnt.addEventListener('click', getSerie);
 //seleccionar favoritos
 
 const listenAddFavoriteSerie = () => {
-  const clickSerie = document.querySelectorAll('.js-li-invisible');
+  const clickSerie = document.querySelectorAll('.js-li');
   for (const selected of clickSerie) {
     selected.addEventListener('click', handleClick);
   }
@@ -41,72 +40,45 @@ const listenAddFavoriteSerie = () => {
 
 const handleClick = ev => {
   const clickedSerieId = parseInt(ev.currentTarget.id);
-  let changeColorTitle = document.querySelectorAll('.js-serie-title');
-  let changeColor = document.querySelector('.js-image-container');
-  debugger;
-  for (let serie of series) {
-    if (serie.id === clickedSerieId) {
-      changeColor.style.backgroundColor = 'red';
-      changeColorTitle.style.color = 'blue';
-    }
-  }
   const indexFavorites = favorites.findIndex(favorites => favorites.id === clickedSerieId);
   const indexSeries = series.findIndex(series => series.id === clickedSerieId);
   if (indexFavorites === -1) {
     favorites.push({ id: series[indexSeries].id, name: series[indexSeries].name, image: series[indexSeries].image });
   } else {
     favorites.splice(indexFavorites, 1);
-    favoritesList.innerHTML = '';
   }
+  paintCard();
   paintFavCard();
-  setInLocalSotrage();
-  /* changeColor(); */
+  setInLocalStorage();
 };
-
-/* function changeColor(ev) {
-  const clickedId = parseInt(ev.currentTarget.id);
-  for (const serie of series) {
-    if (serie.id === clickedId) {
-      serie.classList.add('serie-selected');
-    }
-  }
-} */
-/*   changeColor(); */
-/* function changeColor(ev) {
-  debugger;
-  const clickedSerieId = parseInt(ev.currentTarget.id);
-  const changeColorTitle = document.querySelectorAll('.js-serie-title');
-  const changeColor = document.querySelectorAll('.js-image-container');
-  for (const serie of series) {
-    if (serie.id === clickedSerieId) {
-      changeColor.style.backgroundColor = 'red';
-      changeColorTitle.style.color = 'blue';
-    }
-  }
-}
-*/
 
 //pintar la lista de series buscadas
 function paintCard() {
   let listCode = '';
   for (const serie of series) {
-    listCode += `<li class="js-li-invisible list-item" id="${serie.id}">`;
+    const indexFavorites = favorites.findIndex(favorites => favorites.id === serie.id);
+    if (indexFavorites !== -1) {
+      listCode += `<li class="js-li is-fav list-item" id="${serie.id}">`;
+    } else {
+      listCode += `<li class="js-li list-item" id="${serie.id}">`;
+    }
     listCode += `<h3 class="js-serie-title serie-title">${serie.name} </h3>`;
     listCode += `<div class="js-image-container image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
-    list.innerHTML = listCode;
   }
+  list.innerHTML = listCode;
+  listenAddFavoriteSerie();
 }
 //pintar las películas favoritas
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
-    listCode += `<li class="js-invisible list-item" id="${serie.id}">`;
+    listCode += `<li class="js-invisible-fav list-item" id="${serie.id}">`;
     listCode += `<h3 class="serie-title">${serie.name} <a class="icon" href="#"><img class="cross-icon" src="../css/images/times-solid.svg"></a></h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
-    favoritesList.innerHTML = listCode;
   }
+  favoritesList.innerHTML = listCode;
 }
 //local storage
 
@@ -118,7 +90,7 @@ const getFromLocalStorage = () => {
   }
 };
 
-const setInLocalSotrage = () => {
+const setInLocalStorage = () => {
   const stringifyFavorites = JSON.stringify(favorites);
   localStorage.setItem('favoutiresSeries', stringifyFavorites);
 };

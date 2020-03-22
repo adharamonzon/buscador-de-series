@@ -81,7 +81,7 @@ body {
 .list-item {
   margin-bottom: 20px;
 }
-.serie-selected {
+.is-fav {
   background-color: chartreuse;
   color: blue;
 }
