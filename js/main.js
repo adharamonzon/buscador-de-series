@@ -38,6 +38,11 @@ const listenAddFavoriteSerie = () => {
     selected.addEventListener('click', handleClick);
   }
 };
+
+/* function handleClick() {
+  listenFavorites();
+  changeColor(ev); 
+}*/
 const handleClick = ev => {
   /*   debugger; */
   const clickedSerieId = parseInt(ev.currentTarget.id);
@@ -50,16 +55,27 @@ const handleClick = ev => {
   }
   paintFavCard();
   setInLocalSotrage();
-  /*   changeColor(); */
+  changeColor();
 };
-/* function changeColor() {
-  const changeColor = document.querySelectorAll('.js-image-container');
-  changeColor.style.backgroundColor = 'red';
+
+/*   changeColor(); */
+function changeColor(ev) {
+  debugger;
+  const clickedSerieId = parseInt(ev.currentTarget.id);
   const changeColorTitle = document.querySelectorAll('.js-serie-title');
-  changeColorTitle.style.color = 'blue';
-} */
+  const changeColor = document.querySelectorAll('.js-image-container');
+  for (const serie of series) {
+    if (serie.id === clickedSerieId) {
+      changeColor.style.backgroundColor = 'red';
+      changeColorTitle.style.color = 'blue';
+    }
+  }
+}
+
 //for of para escuchar el click!
-/* let favSerie;
+/* const handleClick = ev => {
+  const clickedSerieId = parseInt(ev.currentTarget.id);
+  let favSerie;
   debugger;
   for (const serie of series) {
       if (serie.id === clickedSerieId) {
@@ -67,8 +83,7 @@ const handleClick = ev => {
       }
     }
   (cierre del handleClick)}
-  favorites.push(favSerie);
- */
+  favorites.push(favSerie); */
 
 //pintar la lista de series buscadas
 function paintCard() {
