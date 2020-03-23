@@ -9,7 +9,7 @@ let favorites = []; //array local storage
 
 //función para coger las series que estoy buscando del servidor
 function getSerie(ev) {
-  ev.preventDefalut;
+  ev.preventDefault();
   const newInput = document.querySelector('.js-input').value;
   fetch(`http://api.tvmaze.com/search/shows?q=${newInput}`)
     .then(response => response.json())
@@ -26,10 +26,9 @@ function getSerie(ev) {
       paintCard();
     });
 }
-
 bnt.addEventListener('click', getSerie);
 
-//escuchar favoritos
+//escuchar favoritos (añadir y borrar)
 
 const listenAddFavoriteSerie = () => {
   const clickSerie = document.querySelectorAll('.js-li');
@@ -75,7 +74,7 @@ function paintCard() {
   list.innerHTML = listCode;
   listenAddFavoriteSerie();
 }
-//pintar las películas favoritas
+//pintar las series favoritas
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
