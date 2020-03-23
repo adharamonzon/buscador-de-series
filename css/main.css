@@ -57,6 +57,7 @@ body {
 }
 .serie-title {
   margin-bottom: 5px;
+  margin-top: 5px;
   text-align: center;
   display: flex;
   justify-content: space-around;
