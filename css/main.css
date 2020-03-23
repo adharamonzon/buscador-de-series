@@ -59,7 +59,7 @@ body {
   margin-bottom: 5px;
   text-align: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .cross-icon {
   width: 20px;
@@ -96,6 +96,10 @@ body {
   width: 35%;
   border-radius: 6px;
   padding-top: 10px;
+}
+.icon-favorite {
+  width: 25px;
+  height: 25px;
 }
 
 .list-item {

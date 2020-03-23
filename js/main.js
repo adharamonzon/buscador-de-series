@@ -64,10 +64,11 @@ function paintCard() {
     const indexFavorites = favorites.findIndex(favorites => favorites.id === serie.id);
     if (indexFavorites !== -1) {
       listCode += `<li class="js-li is-fav list-item" id="${serie.id}">`;
+      listCode += `<h3 class="js-serie-title serie-title">${serie.name} <img class="icon-favorite" src="../css/images/icons8-palomitas-48.png" alt="serie en favoritos"></h3>`;
     } else {
       listCode += `<li class="js-li list-item" id="${serie.id}">`;
+      listCode += `<h3 class="js-serie-title serie-title">${serie.name} </h3>`;
     }
-    listCode += `<h3 class="js-serie-title serie-title">${serie.name} </h3>`;
     listCode += `<div class="js-image-container image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
   }
