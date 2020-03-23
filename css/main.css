@@ -39,7 +39,7 @@ body {
   flex-direction: row-reverse;
 }
 .list-container {
-  width: 70%;
+  width: 65%;
 }
 .list {
   display: grid;
@@ -52,6 +52,7 @@ body {
 }
 .title-section-list {
   margin-bottom: 20px;
+  margin-right: 5px;
   font-weight: bolder;
 }
 .serie-title {
@@ -64,24 +65,43 @@ body {
   width: 20px;
   height: 20px;
 }
+.cross-icon:hover {
+  width: 25px;
+  height: 25px;
+}
 .image-container {
   padding-bottom: 20px;
+}
+.title-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+.delete-all {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.delete-all:hover {
+  width: 45px;
+  height: 45px;
 }
 .favorites {
   background-color: rgb(206, 238, 253, 0.55);
   margin-right: 30px;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   height: 100%;
   width: 35%;
   border-radius: 6px;
   padding-top: 10px;
 }
+
 .list-item {
   margin-bottom: 20px;
 }
 .is-fav {
   background-color: rgba(7, 161, 151, 0.5);
-  color: rgb(61, 61, 141);
+  color: white;
 }

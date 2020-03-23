@@ -79,13 +79,27 @@ function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
     listCode += `<li class="js-li-fav list-item" id="${serie.id}">`;
-    listCode += `<h3 class="serie-title">${serie.name} <a class="icon" href="#"><img class="cross-icon" src="../css/images/times-solid.svg"></a></h3>`;
+    listCode += `<h3 class="serie-title">${serie.name} <a class="icon" href="#"><img class="cross-icon" src="../css/images/trash-alt-solid.svg" title="borrar esta serie" alt="icono para borrar la serie"></a></h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
   }
   favoritesList.innerHTML = listCode;
   listenRemoveFavoriteSerie();
 }
+
+//delete All favorites
+
+const deleteAll = document.querySelector('.js-delete-all');
+
+const deletedFavorites = () => {
+  favorites = [];
+  paintCard();
+  paintFavCard();
+  setInLocalStorage();
+};
+
+deleteAll.addEventListener('click', deletedFavorites);
+
 //local storage
 
 const getFromLocalStorage = () => {
