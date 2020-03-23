@@ -29,10 +29,16 @@ function getSerie(ev) {
 
 bnt.addEventListener('click', getSerie);
 
-//seleccionar favoritos
+//escuchar favoritos
 
 const listenAddFavoriteSerie = () => {
   const clickSerie = document.querySelectorAll('.js-li');
+  for (const selected of clickSerie) {
+    selected.addEventListener('click', handleClick);
+  }
+};
+const listenRemoveFavoriteSerie = () => {
+  const clickSerie = document.querySelectorAll('.js-li-fav');
   for (const selected of clickSerie) {
     selected.addEventListener('click', handleClick);
   }
@@ -73,12 +79,13 @@ function paintCard() {
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
-    listCode += `<li class="js-invisible-fav list-item" id="${serie.id}">`;
+    listCode += `<li class="js-li-fav list-item" id="${serie.id}">`;
     listCode += `<h3 class="serie-title">${serie.name} <a class="icon" href="#"><img class="cross-icon" src="../css/images/times-solid.svg"></a></h3>`;
     listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
   }
   favoritesList.innerHTML = listCode;
+  listenRemoveFavoriteSerie();
 }
 //local storage
 

@@ -82,6 +82,6 @@ body {
   margin-bottom: 20px;
 }
 .is-fav {
-  background-color: chartreuse;
-  color: blue;
+  background-color: rgba(7, 161, 151, 0.5);
+  color: rgb(61, 61, 141);
 }
