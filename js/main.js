@@ -64,12 +64,15 @@ function paintCard() {
     const indexFavorites = favorites.findIndex(favorites => favorites.id === serie.id);
     if (indexFavorites !== -1) {
       listCode += `<li class="js-li is-fav list-item" id="${serie.id}">`;
-      listCode += `<h3 class="js-serie-title serie-title">${serie.name} <img class="icon-favorite" src="../css/images/icons8-palomitas-48.png" alt="serie en favoritos"></h3>`;
+      listCode += `<h3 class="js-serie-title serie-title">${serie.name}`;
+      listCode += `<img class="icon-favorite" src="./css/images/icons8-palomitas-48.png" alt="serie en favoritos">`;
+      listCode += `</h3>`;
     } else {
       listCode += `<li class="js-li list-item" id="${serie.id}">`;
       listCode += `<h3 class="js-serie-title serie-title">${serie.name} </h3>`;
     }
-    listCode += `<div class="js-image-container image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
+    listCode += `<div class="js-image-container image-container">`;
+    listCode += `<img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
   }
   list.innerHTML = listCode;
@@ -80,8 +83,11 @@ function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
     listCode += `<li class="js-li-fav list-item" id="${serie.id}">`;
-    listCode += `<h3 class="serie-title">${serie.name} <a class="icon" href="#"><img class="cross-icon" src="../css/images/trash-alt-solid.svg" title="borrar esta serie" alt="icono para borrar la serie"></a></h3>`;
-    listCode += `<div class="image-container"><img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
+    listCode += `<h3 class="serie-title">${serie.name}`;
+    listCode += `<img class="cross-icon" src="./css/images/trash-alt-solid.svg" title="borrar esta serie" alt="icono para borrar la serie">`;
+    listCode += `</h3>`;
+    listCode += `<div class="js-image-container image-container">`;
+    listCode += `<img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
   }
   favoritesList.innerHTML = listCode;
