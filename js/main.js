@@ -3,6 +3,7 @@
 const bnt = document.querySelector('.js-btn');
 const list = document.querySelector('.js-list');
 let favoritesList = document.querySelector('.js-favorite-list');
+const form = document.querySelector('.js-form');
 
 let series = [];
 let favorites = []; //array local storage
@@ -27,6 +28,7 @@ function getSerie(ev) {
     });
 }
 bnt.addEventListener('click', getSerie);
+form.addEventListener('submit', getSerie);
 
 //escuchar favoritos (añadir y borrar)
 
@@ -44,6 +46,7 @@ const listenRemoveFavoriteSerie = () => {
 };
 
 const handleClick = ev => {
+  ev.preventDefault();
   const clickedSerieId = parseInt(ev.currentTarget.id);
   const indexFavorites = favorites.findIndex(favorites => favorites.id === clickedSerieId);
   const indexSeries = series.findIndex(series => series.id === clickedSerieId);
