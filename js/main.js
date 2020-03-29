@@ -17,7 +17,7 @@ function getSerie(ev) {
     .then(data => {
       series = [];
       for (let i = 0; i < data.length; i++) {
-        series.push({ id: data[i].show.id, name: data[i].show.name, image: data[i].show.image });
+        series.push({ id: data[i].show.id, schedule: data[i].show.schedule.time, name: data[i].show.name, image: data[i].show.image });
         if (series[i].image === null) {
           series[i].image = 'https://via.placeholder.com/210x295/ffffff/666666/? text=TV';
         } else {
@@ -29,6 +29,16 @@ function getSerie(ev) {
 }
 bnt.addEventListener('click', getSerie);
 form.addEventListener('submit', getSerie);
+
+const btnLog = document.querySelector('.js-btn-log');
+
+function showFavorites() {
+  for (const serie of favorites) {
+    console.log(serie.name);
+  }
+}
+
+btnLog.addEventListener('click', showFavorites);
 
 //escuchar favoritos (añadir y borrar)
 
@@ -74,6 +84,7 @@ function paintCard() {
       listCode += `<li class="js-li list-item" id="${serie.id}">`;
       listCode += `<h3 class="js-serie-title serie-title">${serie.name} </h3>`;
     }
+    listCode += `<h4> ${serie.schedule}</h4>`;
     listCode += `<div class="js-image-container image-container">`;
     listCode += `<img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
