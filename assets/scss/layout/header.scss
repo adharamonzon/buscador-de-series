@@ -1,0 +1,45 @@
+.search {
+  background-image: url('../images/palomitas.jpg');
+  background-size: cover;
+  width: 100vw;
+  height: 30vh;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &--title {
+    margin-bottom: 15px;
+    color: whitesmoke;
+    font-size: 40px;
+  }
+  &--form {
+    &__input {
+      width: 350px;
+      border-radius: 6px;
+      height: 40px;
+      font-size: 18px;
+      color: #a41623;
+      font-weight: bolder;
+      border: none;
+    }
+    &__btn {
+      width: 90px;
+      border-radius: 6px;
+      border: none;
+      height: 40px;
+      background-color: #a41623;
+      color: whitesmoke;
+      cursor: pointer;
+      font-size: 18px;
+      &:hover {
+        background-color: whitesmoke;
+        color: #a41623;
+        font-weight: bolder;
+        transition: ease 1s;
+      }
+    }
+  }
+}
+input::placeholder {
+  color: #a41623;
+}

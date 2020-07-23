@@ -13,8 +13,8 @@ function getSerie(ev) {
   ev.preventDefault();
   const newInput = document.querySelector('.js-input').value;
   fetch(`http://api.tvmaze.com/search/shows?q=${newInput}`)
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       series = [];
       for (let i = 0; i < data.length; i++) {
         series.push({ id: data[i].show.id, name: data[i].show.name, image: data[i].show.image });
@@ -45,11 +45,11 @@ const listenRemoveFavoriteSerie = () => {
   }
 };
 
-const handleClick = ev => {
+const handleClick = (ev) => {
   ev.preventDefault();
   const clickedSerieId = parseInt(ev.currentTarget.id);
-  const indexFavorites = favorites.findIndex(favorites => favorites.id === clickedSerieId);
-  const indexSeries = series.findIndex(series => series.id === clickedSerieId);
+  const indexFavorites = favorites.findIndex((favorites) => favorites.id === clickedSerieId);
+  const indexSeries = series.findIndex((series) => series.id === clickedSerieId);
   if (indexFavorites === -1) {
     favorites.push({ id: series[indexSeries].id, name: series[indexSeries].name, image: series[indexSeries].image });
   } else {
@@ -64,18 +64,20 @@ const handleClick = ev => {
 function paintCard() {
   let listCode = '';
   for (const serie of series) {
-    const indexFavorites = favorites.findIndex(favorites => favorites.id === serie.id);
+    const indexFavorites = favorites.findIndex((favorites) => favorites.id === serie.id);
     if (indexFavorites !== -1) {
-      listCode += `<li class="js-li is-fav list-item" id="${serie.id}">`;
-      listCode += `<h3 class="js-serie-title serie-title">${serie.name}`;
-      listCode += `<img class="icon-favorite" src="./css/images/icons8-palomitas-48.png" alt="serie en favoritos">`;
+      listCode += `<li class="js-li is-fav main--series__list--item" id="${serie.id}">`;
+      listCode += `<h3 class="js-serie-title main--series__list--item__title is-fav__title">${serie.name}`;
+      listCode += `<img class="main--series__list--item__favorite-icon" src="./assets/images/palomitas.png" alt="serie en favoritos">`;
       listCode += `</h3>`;
+      listCode += `<div class="js-image-container main--series__list--item__image ">`;
+      listCode += `<img  class="is-fav__image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     } else {
-      listCode += `<li class="js-li list-item" id="${serie.id}">`;
-      listCode += `<h3 class="js-serie-title serie-title">${serie.name} </h3>`;
+      listCode += `<li class="js-li main--series__list--item" id="${serie.id}">`;
+      listCode += `<h3 class="js-serie-title main--series__list--item__title">${serie.name} </h3>`;
+      listCode += `<div class="js-image-container main--series__list--item__image">`;
+      listCode += `<img  class"fav-image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     }
-    listCode += `<div class="js-image-container image-container">`;
-    listCode += `<img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     listCode += `</li>`;
   }
   list.innerHTML = listCode;
@@ -85,9 +87,9 @@ function paintCard() {
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
-    listCode += `<li class="js-li-fav list-item" id="${serie.id}">`;
-    listCode += `<h3 class="serie-title">${serie.name}`;
-    listCode += `<img class="cross-icon" src="./css/images/trash-alt-solid.svg" title="borrar esta serie" alt="icono para borrar la serie">`;
+    listCode += `<li class="js-li-fav favorites--list-item" id="${serie.id}">`;
+    listCode += `<h3 class="favorites--list-item__title">${serie.name}`;
+    listCode += `<img class="favorites--list-item__trash-icon" src="./assets/images/trash.svg" title="borrar esta serie" alt="icono para borrar la serie">`;
     listCode += `</h3>`;
     listCode += `<div class="js-image-container image-container">`;
     listCode += `<img class"image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;

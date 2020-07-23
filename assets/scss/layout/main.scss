@@ -1,0 +1,116 @@
+.main {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  &--series {
+    width: 70%;
+    margin-right: 25px;
+    &__title {
+      margin-bottom: 20px;
+      margin-right: 5px;
+      font-weight: 700;
+      color: #a41623;
+    }
+    &__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      &--item {
+        list-style: none;
+        cursor: pointer;
+        &__title {
+          display: flex;
+          justify-content: start;
+          margin-right: 15px;
+          margin-left: 10px;
+          margin-top: 7px;
+          color: #a41623;
+        }
+        &__image {
+          padding-bottom: 20px;
+          border-radius: 5px;
+          :hover {
+            box-shadow: 13px 13px 20px 5px rgba(0, 0, 0, 0.75);
+          }
+        }
+        &__favorite-icon {
+          width: 25px;
+          height: 25px;
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}
+.favorites {
+  background-color: #a41623;
+  opacity: 0.8;
+  position: absolute;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  border-radius: 6px;
+  padding-top: 10px;
+  &--icon {
+    width: 30px;
+    height: 30px;
+  }
+  &--container {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin-bottom: 20px;
+    &__title {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 5px;
+      font-size: 22px;
+      color: whitesmoke;
+    }
+  }
+  &--delete-all {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    &:hover {
+      width: 45px;
+      height: 45px;
+    }
+  }
+  &--list-item {
+    margin-bottom: 10px;
+    list-style: none;
+    &__title {
+      margin-bottom: 10px;
+      margin-right: 5px;
+      font-weight: bolder;
+      display: flex;
+      justify-content: space-between;
+      margin-right: 20px;
+      color: whitesmoke;
+    }
+    &__trash-icon {
+      width: 20px;
+      height: 20px;
+      &:hover {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
+
+.is-fav {
+  &__title {
+    text-decoration: overline;
+  }
+  &__image {
+    box-shadow: 13px 14px 20px -3px rgba(164, 22, 35, 1);
+  }
+}
+.image {
+  border-radius: 5px;
+  width: 200px;
+}

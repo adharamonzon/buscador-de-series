@@ -1,0 +1,69 @@
+.search {
+  background-image: url("../images/palomitas.jpg");
+  background-size: cover;
+  width: 100vw;
+  height: 30vh;
+  margin-bottom: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search--title {
+  margin-bottom: 15px;
+  color: whitesmoke;
+  font-size: 40px;
+}
+
+.search--form__input {
+  width: 350px;
+  border-radius: 6px;
+  height: 40px;
+  font-size: 18px;
+  color: #a41623;
+  font-weight: bolder;
+  border: none;
+}
+
+.search--form__btn {
+  width: 90px;
+  border-radius: 6px;
+  border: none;
+  height: 40px;
+  background-color: #a41623;
+  color: whitesmoke;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.search--form__btn:hover {
+  background-color: whitesmoke;
+  color: #a41623;
+  font-weight: bolder;
+  -webkit-transition: ease 1s;
+  transition: ease 1s;
+}
+
+input::-webkit-input-placeholder {
+  color: #a41623;
+}
+
+input:-ms-input-placeholder {
+  color: #a41623;
+}
+
+input::-ms-input-placeholder {
+  color: #a41623;
+}
+
+input::placeholder {
+  color: #a41623;
+}
+/*# sourceMappingURL=header.css.map */

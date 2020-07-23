@@ -4,6 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Gotu&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/scss/main.css" />
+    <title>Buscador de series</title>
+  </head>
+  <body>
+    <section class="search">
+      <h1 class="search--title">Buscador de series</h1>
+      <form class="js-form search--form">
+        <input class="js-input search--form__input" type="text" placeholder="Busca tu serie" />
+        <button class="js-btn search--form__btn" type="button">Buscar</button>
+      </form>
+    </section>
+    <main class="main">
+      <section class="main--series">
+        <h2 class="main--series__title">Series buscadas:</h2>
+        <ul class="js-list main--series__list"></ul>
+      </section>
+      <aside class="favorites">
+        <div class="favorites--container">
+          <img class="favorites--icon" src="./assets/images/palomitas.png" alt="serie en favoritos" />
+          <h2 class="favorites--container__title">Series favoritas</h2>
+          <a href="#"><img class="js-delete-all favorites--delete-all" title="borar todo" alt="borrar todo favoritos" src="./assets/images/trash.svg" /></a>
+        </div>
+        <ul class="js-favorite-list"></ul>
+      </aside>
+    </main>
+
+    <script type="text/javascript" src="./js/main.js"></script>
+  </body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Gotu&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./css/main.css" />
     <title>Evaluación final Adhara Monzón</title>
   </head>
@@ -31,3 +66,4 @@
     <script type="text/javascript" src="./js/main.js"></script>
   </body>
 </html>
+ -->
