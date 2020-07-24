@@ -114,6 +114,7 @@ input::placeholder {
 .main--series__list--item {
   list-style: none;
   cursor: pointer;
+  position: relative;
 }
 
 .main--series__list--item__title {
@@ -243,6 +244,21 @@ input::placeholder {
 .image {
   border-radius: 5px;
   width: 200px;
+}
+
+.info-btn {
+  background-color: red;
+}
+
+.info-container {
+  display: none;
+  position: absolute;
+  top: 90px;
+  z-index: 9999;
+}
+
+.moreInfo {
+  background-color: rgba(164, 22, 35, 0.7);
 }
 
 @media all and (max-width: 1000px) {

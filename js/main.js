@@ -17,7 +17,7 @@ function getSerie(ev) {
     .then((data) => {
       series = [];
       for (let i = 0; i < data.length; i++) {
-        series.push({ id: data[i].show.id, name: data[i].show.name, image: data[i].show.image });
+        series.push({ id: data[i].show.id, name: data[i].show.name, image: data[i].show.image, status: data[i].show.status, genres: data[i].show.genres, link: data[i].show.officialSite });
         if (series[i].image === null) {
           series[i].image = 'https://via.placeholder.com/210x295/ffffff/666666/? text=TV';
         } else {
@@ -25,11 +25,12 @@ function getSerie(ev) {
         }
       }
       paintCard();
+      console.log(series);
     });
 }
 bnt.addEventListener('click', getSerie);
 form.addEventListener('submit', getSerie);
-
+console.log(series);
 //escuchar favoritos (añadir y borrar)
 
 const listenAddFavoriteSerie = () => {
@@ -78,11 +79,34 @@ function paintCard() {
       listCode += `<div class="js-image-container main--series__list--item__image">`;
       listCode += `<img  class"fav-image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     }
+    listCode += `<button class="js-info-btn info-btn">+ Info</button>`;
+    listCode += `<div class="js-info-container info-container">`;
+    listCode += `<h5> Géneros: </h5>`;
+    listCode += `<ul>`;
+    listCode += `<li></li>`;
+    listCode += `</ul>`;
+    if (serie.status === 'Ended') {
+      listCode += `<h5>Estado: Terminada</h5>`;
+    } else if (serie.status === 'Running') {
+      listCode += `<h5>Estado: En emisión</h5>`;
+    } else {
+      listCode += `<h5>Estado: Sin información</h5>`;
+    }
+
+    listCode += `</div>`;
     listCode += `</li>`;
   }
   list.innerHTML = listCode;
   listenAddFavoriteSerie();
 }
+//más información
+const info = document.querySelector('.js-info-container');
+const infoBtn = document.querySelector('.js-info-btn');
+
+const getMoreInfo = () => {};
+
+infoBtn.addEventListener('click', getMoreInfo);
+
 //pintar las series favoritas
 function paintFavCard() {
   let listCode = '';
