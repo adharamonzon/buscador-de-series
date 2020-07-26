@@ -115,15 +115,29 @@
   border-radius: 5px;
   width: 200px;
 }
-.info-btn {
-  background-color: red;
-}
+
 .info-container {
   display: none;
   position: absolute;
   top: 90px;
   z-index: 9999;
+  color: white;
+  margin: 20px;
+  padding: 25px;
+  line-height: 25px;
+  box-shadow: 0 0 8px 8px #692643 inset;
+  border-radius: 5px;
+  background: radial-gradient(circle, rgba(105, 38, 67, 1) 0%, rgba(164, 22, 35, 1) 100%);
+}
+.genre {
+  /* display: flex; */
+  &__item {
+    list-style: none;
+  }
 }
 .moreInfo {
   background-color: rgba(164, 22, 35, 0.7);
+}
+.show {
+  display: block;
 }

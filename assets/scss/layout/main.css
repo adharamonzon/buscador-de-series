@@ -164,18 +164,34 @@
   width: 200px;
 }
 
-.info-btn {
-  background-color: red;
-}
-
 .info-container {
   display: none;
   position: absolute;
   top: 90px;
   z-index: 9999;
+  color: white;
+  margin: 20px;
+  padding: 25px;
+  line-height: 25px;
+  -webkit-box-shadow: 0 0 8px 8px #692643 inset;
+          box-shadow: 0 0 8px 8px #692643 inset;
+  border-radius: 5px;
+  background: radial-gradient(circle, #692643 0%, #a41623 100%);
+}
+
+.genre {
+  /* display: flex; */
+}
+
+.genre__item {
+  list-style: none;
 }
 
 .moreInfo {
   background-color: rgba(164, 22, 35, 0.7);
+}
+
+.show {
+  display: block;
 }
 /*# sourceMappingURL=main.css.map */

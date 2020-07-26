@@ -25,7 +25,6 @@ function getSerie(ev) {
         }
       }
       paintCard();
-      console.log(series);
     });
 }
 bnt.addEventListener('click', getSerie);
@@ -77,20 +76,29 @@ function paintCard() {
       listCode += `<li class="js-li main--series__list--item" id="${serie.id}">`;
       listCode += `<h3 class="js-serie-title main--series__list--item__title">${serie.name} </h3>`;
       listCode += `<div class="js-image-container main--series__list--item__image">`;
-      listCode += `<img  class"fav-image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
+      listCode += `<img  class"fav-image info" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     }
-    listCode += `<button class="js-info-btn info-btn">+ Info</button>`;
+
     listCode += `<div class="js-info-container info-container">`;
-    listCode += `<h5> Géneros: </h5>`;
+    listCode += `<h4 class="genre"> Géneros: </h4>`;
     listCode += `<ul>`;
-    listCode += `<li></li>`;
+    for (const gender of serie.genres) {
+      listCode += `<li class="genre__item">`;
+      listCode += `<p>${gender}</p>`;
+      listCode += `</li>`;
+    }
     listCode += `</ul>`;
     if (serie.status === 'Ended') {
-      listCode += `<h5>Estado: Terminada</h5>`;
+      listCode += `<h4>Estado: `;
+      listCode += `<p>Terminada</p>`;
+      listCode += `</h4>`;
     } else if (serie.status === 'Running') {
-      listCode += `<h5>Estado: En emisión</h5>`;
+      listCode += `<h4>Estado: `;
+      listCode += `<p>En emisión</p>`;
+      listCode += `</h4>`;
     } else {
-      listCode += `<h5>Estado: Sin información</h5>`;
+      listCode += `<h4>Estado:`;
+      listCode += `<p>Sin información</p></h4>`;
     }
 
     listCode += `</div>`;
@@ -100,12 +108,17 @@ function paintCard() {
   listenAddFavoriteSerie();
 }
 //más información
-const info = document.querySelector('.js-info-container');
-const infoBtn = document.querySelector('.js-info-btn');
+const infoContainer = document.querySelector('.info-container');
+const infoTrigers = document.querySelectorAll('.js-li');
 
-const getMoreInfo = () => {};
-
-infoBtn.addEventListener('click', getMoreInfo);
+function getMoreInfo() {
+  console.log(triger);
+  infoContainer.classList.add('show');
+}
+infoTrigers.forEach((triger) => {
+  debugger;
+  triger.addEventListener('mousein', getMoreInfo);
+});
 
 //pintar las series favoritas
 function paintFavCard() {
