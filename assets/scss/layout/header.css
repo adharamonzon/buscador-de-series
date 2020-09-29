@@ -32,6 +32,10 @@
   border: none;
 }
 
+.search--form__input :focus {
+  color: white;
+}
+
 .search--form__btn {
   width: 90px;
   border-radius: 6px;

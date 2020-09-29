@@ -12,7 +12,7 @@ let favorites = []; //array local storage
 function getSerie(ev) {
   ev.preventDefault();
   const newInput = document.querySelector('.js-input').value;
-  fetch(`http://api.tvmaze.com/search/shows?q=${newInput}`)
+  fetch(`https://api.tvmaze.com/search/shows?q=${newInput}`)
     .then((response) => response.json())
     .then((data) => {
       series = [];
@@ -29,9 +29,8 @@ function getSerie(ev) {
 }
 bnt.addEventListener('click', getSerie);
 form.addEventListener('submit', getSerie);
-console.log(series);
-//escuchar favoritos (añadir y borrar)
 
+//escuchar favoritos (añadir y borrar)
 const listenAddFavoriteSerie = () => {
   const clickSerie = document.querySelectorAll('.js-li');
   for (const selected of clickSerie) {
@@ -44,7 +43,7 @@ const listenRemoveFavoriteSerie = () => {
     selected.addEventListener('click', handleClick);
   }
 };
-
+//función para marcar una serie como favorita
 const handleClick = (ev) => {
   ev.preventDefault();
   const clickedSerieId = parseInt(ev.currentTarget.id);
@@ -66,6 +65,7 @@ function paintCard() {
   for (const serie of series) {
     const indexFavorites = favorites.findIndex((favorites) => favorites.id === serie.id);
     if (indexFavorites !== -1) {
+      //estructura de serie favorita
       listCode += `<li class="js-li is-fav main--series__list--item" id="${serie.id}">`;
       listCode += `<h3 class="js-serie-title main--series__list--item__title is-fav__title">${serie.name}`;
       listCode += `<img class="main--series__list--item__favorite-icon" src="./assets/images/palomitas.png" alt="serie en favoritos">`;
@@ -73,12 +73,13 @@ function paintCard() {
       listCode += `<div class="js-image-container main--series__list--item__image ">`;
       listCode += `<img  class="is-fav__image" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     } else {
+      //estructura serie no favoritos
       listCode += `<li class="js-li main--series__list--item" id="${serie.id}">`;
       listCode += `<h3 class="js-serie-title main--series__list--item__title">${serie.name} </h3>`;
       listCode += `<div class="js-image-container main--series__list--item__image">`;
       listCode += `<img  class"fav-image info" src="${serie.image}" title="serie ${serie.name}" alt="fotografía de la serie: ${serie.name}"></div>`;
     }
-
+    //sección de información extra
     listCode += `<div class="js-info-container info-container">`;
     listCode += `<h4 class="genre"> Géneros: </h4>`;
     listCode += `<ul>`;
@@ -106,21 +107,47 @@ function paintCard() {
   }
   list.innerHTML = listCode;
   listenAddFavoriteSerie();
+  trigerEvent();
+  getMoreInfo();
 }
 //más información
-const infoContainer = document.querySelector('.info-container');
-const infoTrigers = document.querySelectorAll('.js-li');
+const infoContainer = document.querySelectorAll('.info-container');
 
-function getMoreInfo() {
-  console.log(triger);
-  infoContainer.classList.add('show');
-}
+const trigerEvent = () => {
+  const infoTrigers = document.querySelectorAll('.js-li');
+  for (const triger of infoTrigers) {
+    triger.addEventListener('mouseover', getMoreInfo);
+  }
+};
+
+/* const handleClick = (ev) => {
+  ev.preventDefault();
+  const clickedSerieId = parseInt(ev.currentTarget.id);
+  const indexFavorites = favorites.findIndex((favorites) => favorites.id === clickedSerieId);
+  const indexSeries = series.findIndex((series) => series.id === clickedSerieId);
+  if (indexFavorites === -1) {
+    favorites.push({ id: series[indexSeries].id, name: series[indexSeries].name, image: series[indexSeries].image });
+  } else {
+    favorites.splice(indexFavorites, 1);
+  } */
+
+const getMoreInfo = (ev) => {
+  ev.preventDefault();
+  const clickedSerieId = parseInt(ev.currentTarget.id);
+  const indexSeries = series.findIndex((series) => series.id === clickedSerieId);
+  indexSeries.classList.add('show');
+  /*   infoContainer.forEach((container) => container.classList.add('show'));
+   */
+
+  paintCard();
+};
+
+/* 
 infoTrigers.forEach((triger) => {
-  debugger;
-  triger.addEventListener('mousein', getMoreInfo);
-});
+  triger.addEventListener('mouseover', getMoreInfo);
+});  */
 
-//pintar las series favoritas
+//pintar las series favoritas en la sección favoritos
 function paintFavCard() {
   let listCode = '';
   for (const serie of favorites) {
@@ -148,6 +175,14 @@ const deletedFavorites = () => {
 };
 
 deleteAll.addEventListener('click', deletedFavorites);
+
+//mensaje de error con la búsqueda
+if (series.length >= 0) {
+  const message = document.querySelector('.js-message');
+  message.innerHTML = 'Ninguna serie encontrada';
+} else {
+  message.innerHTML = 'Resultados de tu búsqueda:';
+}
 
 //local storage
 

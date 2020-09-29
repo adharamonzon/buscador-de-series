@@ -21,6 +21,9 @@
       color: #a41623;
       font-weight: bolder;
       border: none;
+      :focus {
+        color: white;
+      }
     }
     &__btn {
       width: 90px;
