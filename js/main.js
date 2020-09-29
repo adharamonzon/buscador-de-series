@@ -107,45 +107,8 @@ function paintCard() {
   }
   list.innerHTML = listCode;
   listenAddFavoriteSerie();
-  trigerEvent();
-  getMoreInfo();
 }
-//más información
-const infoContainer = document.querySelectorAll('.info-container');
-
-const trigerEvent = () => {
-  const infoTrigers = document.querySelectorAll('.js-li');
-  for (const triger of infoTrigers) {
-    triger.addEventListener('mouseover', getMoreInfo);
-  }
-};
-
-/* const handleClick = (ev) => {
-  ev.preventDefault();
-  const clickedSerieId = parseInt(ev.currentTarget.id);
-  const indexFavorites = favorites.findIndex((favorites) => favorites.id === clickedSerieId);
-  const indexSeries = series.findIndex((series) => series.id === clickedSerieId);
-  if (indexFavorites === -1) {
-    favorites.push({ id: series[indexSeries].id, name: series[indexSeries].name, image: series[indexSeries].image });
-  } else {
-    favorites.splice(indexFavorites, 1);
-  } */
-
-const getMoreInfo = (ev) => {
-  ev.preventDefault();
-  const clickedSerieId = parseInt(ev.currentTarget.id);
-  const indexSeries = series.findIndex((series) => series.id === clickedSerieId);
-  indexSeries.classList.add('show');
-  /*   infoContainer.forEach((container) => container.classList.add('show'));
-   */
-
-  paintCard();
-};
-
-/* 
-infoTrigers.forEach((triger) => {
-  triger.addEventListener('mouseover', getMoreInfo);
-});  */
+paintCard();
 
 //pintar las series favoritas en la sección favoritos
 function paintFavCard() {
@@ -175,14 +138,6 @@ const deletedFavorites = () => {
 };
 
 deleteAll.addEventListener('click', deletedFavorites);
-
-//mensaje de error con la búsqueda
-if (series.length >= 0) {
-  const message = document.querySelector('.js-message');
-  message.innerHTML = 'Ninguna serie encontrada';
-} else {
-  message.innerHTML = 'Resultados de tu búsqueda:';
-}
 
 //local storage
 
